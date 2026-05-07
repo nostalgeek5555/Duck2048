@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Duck 2048 | Antheloop</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold-primary: #FFE8A8;
+            --gold-dark: #F9A825;
+            --brown-accent: #8B6F47;
+            --cream-light: #FFF8DC;
+            --text-dark: #1A202C;
+            --text-muted: #666F7D;
+            --yellow-bright: #FFEB3B;
+            --orange-warm: #FFAF40;
+            --blue-soft: #E3F2FD;
+            --blue-brand: #1E88E5;
+            --border-color: #E5E7EB;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(180deg, var(--cream-light) 0%, #FFF5E6 40%, #FFF0F5 100%);
+            color: var(--text-dark);
+            line-height: 1.75;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Decorative Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: rotate 30s linear infinite;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -150px;
+            left: -150px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 175, 64, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: rotate 40s linear infinite reverse;
+        }
+
+        @keyframes rotate {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 70px 0 60px;
+            animation: fadeInUp 0.9s ease-out;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .logo-bar {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .antheloop-logo-box {
+            width: 90px;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: 0 12px 35px rgba(30, 136, 229, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(30, 136, 229, 0.1);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .antheloop-logo-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 45px rgba(30, 136, 229, 0.3);
+        }
+
+        .antheloop-logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .header-text h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 56px;
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            letter-spacing: -1.5px;
+        }
+
+        .header-text p {
+            font-size: 16px;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .hero-right {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: slideInRight 1s ease-out;
+        }
+
+        .game-showcase {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .game-showcase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .game-logo-display {
+            width: 140px;
+            height: auto;
+            margin: 0 auto 20px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
+        }
+
+        .game-showcase h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .game-showcase p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Navigation Tabs */
+        .nav-container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 60px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .nav-tabs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+            gap: 12px;
+        }
+
+        .nav-link {
+            padding: 14px 16px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 175, 64, 0.04));
+            border: 1.5px solid rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--gold-primary), var(--orange-warm));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-link:hover {
+            border-color: var(--gold-primary);
+            color: var(--text-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(255, 215, 0, 0.15);
+        }
+
+        /* Main Content */
+        main {
+            margin-bottom: 100px;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 20px;
+            padding: 55px;
+            margin-bottom: 40px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 42px;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--gold-primary);
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+
+        .subsection-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 32px 0 16px;
+            padding-left: 16px;
+            border-left: 4px solid var(--gold-dark);
+            letter-spacing: -0.3px;
+        }
+
+        p {
+            margin: 16px 0;
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 28px;
+        }
+
+        li {
+            margin: 14px 0;
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* Accent Boxes */
+        .accent-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.12) 0%, rgba(255, 175, 64, 0.06) 100%);
+            border-left: 5px solid var(--gold-primary);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.12);
+        }
+
+        .accent-box.highlight {
+            background: linear-gradient(135deg, rgba(255, 175, 64, 0.15) 0%, rgba(255, 215, 0, 0.08) 100%);
+            border-left-color: var(--orange-warm);
+        }
+
+        .accent-box strong {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .accent-box em {
+            font-style: italic;
+            color: var(--gold-dark);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--gold-primary) 0%, #FFD180 50%, var(--orange-warm) 100%);
+            border-radius: 20px;
+            padding: 45px;
+            margin: 40px 0;
+            color: var(--text-dark);
+            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .contact-section h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        .contact-item {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 14px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-item::before {
+            content: '✓';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Links */
+        a {
+            color: var(--gold-dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--gold-dark);
+            transition: width 0.3s ease;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+        .contact-section a {
+            color: var(--text-dark);
+        }
+
+        /* Code styling */
+        code {
+            background: rgba(255, 215, 0, 0.12);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1A202C 0%, #2D3748 100%);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 60px 24px;
+            text-align: center;
+            margin-top: 80px;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-logos-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo-item {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .footer-logo-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-3px);
+        }
+
+        .footer-logo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0.85);
+        }
+
+        .footer-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 26px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--orange-warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: rgba(255, 215, 0, 0.15);
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--gold-primary);
+            font-size: 13px;
+        }
+
+        /* Scroll Indicator */
+        .scroll-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--orange-warm));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+            font-size: 24px;
+            color: var(--text-dark);
+            font-weight: bold;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-right {
+                margin-top: 20px;
+            }
+
+            .header-text h1 {
+                font-size: 44px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .content-section {
+                padding: 40px;
+            }
+
+            header {
+                padding: 60px 0 40px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            header {
+                padding: 40px 0 30px;
+            }
+
+            .logo-bar {
+                gap: 12px;
+            }
+
+            .antheloop-logo-box {
+                width: 70px;
+                height: 70px;
+            }
+
+            .header-text h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .subsection-title {
+                font-size: 18px;
+            }
+
+            .content-section {
+                padding: 24px;
+                border-radius: 16px;
+                margin-bottom: 24px;
+            }
+
+            .nav-container {
+                padding: 20px;
+            }
+
+            .nav-tabs {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .game-logo-display {
+                width: 100px;
+            }
+
+            .contact-section {
+                padding: 25px;
+            }
+
+            .scroll-top {
+                width: 48px;
+                height: 48px;
+                bottom: 24px;
+                right: 24px;
+                font-size: 20px;
+            }
+
+            ul, ol {
+                padding-left: 20px;
+            }
+
+            p {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-tabs {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-logos-display {
+                gap: 15px;
+            }
+
+            .footer-logo-item {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media print {
+            body::before, body::after {
+                display: none;
+            }
+
+            .nav-container, .scroll-top {
+                display: none;
+            }
+
+            .content-section {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="hero">
+            <div class="hero-left">
+                <div class="logo-bar">
+                    <div class="antheloop-logo-box">
+                        <img src="antheloop-logo.png" alt="Antheloop Studio" loading="lazy">
+                    </div>
+                    <div class="header-text">
+                        <h1>Privacy Policy</h1>
+                        <p>by Antheloop</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="game-showcase">
+                    <img src="duck-2048-logo.png" alt="Duck 2048" class="game-logo-display" loading="lazy">
+                    <h2>Duck 2048</h2>
+                    <p>Your Privacy Matters</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-container">
+            <label class="nav-label">Quick Navigation</label>
+            <div class="nav-tabs">
+                <a href="#intro" class="nav-link">Introduction</a>
+                <a href="#no-collect" class="nav-link">What We Don't Collect</a>
+                <a href="#auto-receive" class="nav-link">What We Receive</a>
+                <a href="#usage" class="nav-link">How We Use Data</a>
+                <a href="#security" class="nav-link">Security</a>
+                <a href="#children" class="nav-link">Children</a>
+                <a href="#rights" class="nav-link">Your Rights</a>
+                <a href="#legal" class="nav-link">Legal Info</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Introduction -->
+        <div id="intro" class="content-section">
+            <h2 class="section-title">Welcome</h2>
+            <p>We're <strong>Antheloop</strong>, creators of Duck 2048 — a charming puzzle game where cute ducks challenge your strategic thinking. This Privacy Policy explains how we handle your information with complete transparency.</p>
+            <div class="accent-box">
+                <strong>💡 Our Philosophy:</strong> We believe privacy should be simple. We don't collect personal information like your name, email, or location. What we do collect is minimal and only used to keep the game running smoothly.
+            </div>
+        </div>
+
+        <!-- What We Don't Collect -->
+        <div id="no-collect" class="content-section">
+            <h2 class="section-title">What We Never Collect</h2>
+            <p>Duck 2048 is privacy-first by design. Here's what you'll <strong>never</strong> see us asking for:</p>
+            <ul>
+                <li>Your name, email, phone number, or address</li>
+                <li>Precise location or GPS coordinates</li>
+                <li>Device contacts, calendar, or media files</li>
+                <li>Personal account credentials or passwords</li>
+                <li>Data that identifies you personally in-game</li>
+                <li>Biometric information</li>
+                <li>Any personally identifiable information (PII)</li>
+            </ul>
+            <div class="accent-box highlight">
+                <strong>✓ Verified:</strong> We've structured Duck 2048 to be completely anonymous. You can play without signing up or sharing any personal info.
+            </div>
+        </div>
+
+        <!-- Automatically Received Information -->
+        <div id="auto-receive" class="content-section">
+            <h2 class="section-title">Information We Automatically Receive</h2>
+            
+            <h3 class="subsection-title">📱 Your Advertising ID</h3>
+            <p>To show relevant ads, we use your device's <strong>Advertising ID</strong> — a unique, non-personal token assigned by your device's operating system. Think of it as a random number, not a personal identifier.</p>
+            <p><strong>How we use it:</strong></p>
+            <ul>
+                <li>Display ads that match your interests</li>
+                <li>Measure how well our ads perform</li>
+                <li>Prevent fraud and duplicate advertising</li>
+                <li>Comply with advertising industry standards</li>
+            </ul>
+
+            <div class="accent-box">
+                <strong>🎮 Want to Opt Out?</strong> You're in complete control. To stop seeing personalized ads:
+                <ol style="margin-top: 12px;">
+                    <li>Open <code>Settings → Google → Manage Your Google Account</code></li>
+                    <li>Go to <code>Data & Privacy</code> section</li>
+                    <li>Find <code>Ad Personalization</code> and toggle it off</li>
+                </ol>
+            </div>
+
+            <h3 class="subsection-title">🔗 Ad Networks & Partners</h3>
+            <p>We partner with third-party ad networks to show you ads. These networks may collect limited data in compliance with their privacy policies:</p>
+            <ul>
+                <li>Device type and Android OS version</li>
+                <li>Ad interaction metrics (views, clicks)</li>
+                <li>General region/country (never precise location)</li>
+                <li>Anonymous usage statistics</li>
+            </ul>
+            <p>Learn more about how <a href="https://policies.google.com/privacy" target="_blank">Google protects your privacy</a>.</p>
+
+            <h3 class="subsection-title">📊 Technical Device Data</h3>
+            <p>To keep Duck 2048 running smoothly across different devices, we collect minimal technical data:</p>
+            <ul>
+                <li>Your device model and manufacturer</li>
+                <li>Android operating system version</li>
+                <li>Duck 2048 app version</li>
+                <li>Crash reports and error logs (for debugging)</li>
+                <li>Anonymous gameplay metrics (session length, features used)</li>
+            </ul>
+        </div>
+
+        <!-- How We Use Information -->
+        <div id="usage" class="content-section">
+            <h2 class="section-title">How We Use Your Data</h2>
+            
+            <h3 class="subsection-title">✨ Better Advertising</h3>
+            <p>Your Advertising ID helps us show ads that are actually relevant to you, not random spam. It also helps us detect and prevent advertising fraud across the ecosystem.</p>
+
+            <h3 class="subsection-title">🎮 Improving the Game</h3>
+            <p>Technical data helps us make Duck 2048 better:</p>
+            <ul>
+                <li><strong>Performance:</strong> Optimize the game for your device</li>
+                <li><strong>Bug Fixes:</strong> Identify and fix crashes</li>
+                <li><strong>Features:</strong> Understand which features players enjoy</li>
+                <li><strong>Stability:</strong> Ensure the game runs smoothly</li>
+            </ul>
+
+            <h3 class="subsection-title">⚖️ Legal Obligations</h3>
+            <p>We use data to comply with laws, enforce our terms of service, and protect against fraud and abuse.</p>
+        </div>
+
+        <!-- Security -->
+        <div id="security" class="content-section">
+            <h2 class="section-title">Data Security</h2>
+            <p>We implement industry-standard security measures to protect the technical information we receive. Our approach includes encryption, secure transmission, and limited access controls.</p>
+            <div class="accent-box highlight">
+                <strong>⚠️ Important Note:</strong> Since we don't collect personal data, the risk of identity theft or privacy violation is extremely low. The data we do collect is minimally sensitive.
+            </div>
+            <p>No internet transmission is 100% secure, but we take every reasonable precaution to safeguard your data.</p>
+        </div>
+
+        <!-- Children's Privacy -->
+        <div id="children" class="content-section">
+            <h2 class="section-title">Children's Privacy</h2>
+            <p>Duck 2048 is designed to be family-friendly for all ages. We strictly comply with <strong>COPPA</strong> (Children's Online Privacy Protection Act in the US) and Google Play's <strong>Families Policy</strong>.</p>
+            <ul>
+                <li><strong>✓</strong> We don't knowingly collect personal information from children under 13</li>
+                <li><strong>✓</strong> No account registration or sign-up required to play</li>
+                <li><strong>✓</strong> We never request personal data from any user</li>
+                <li><strong>✓</strong> All advertising follows family-friendly guidelines</li>
+            </ul>
+            <p><strong>For Parents & Guardians:</strong> You can enable parental controls in Google Play Settings and adjust advertising preferences in your device settings at any time.</p>
+        </div>
+
+        <!-- Your Rights -->
+        <div id="rights" class="content-section">
+            <h2 class="section-title">Your Privacy Rights</h2>
+            
+            <h3 class="subsection-title">🎯 Control Your Ads</h3>
+            <ul>
+                <li>Opt out of personalized advertising in device settings</li>
+                <li>Reset your Advertising ID at any time</li>
+                <li>Review and adjust your Google ad preferences</li>
+            </ul>
+
+            <h3 class="subsection-title">🔐 App Permissions</h3>
+            <p>You can review which permissions Duck 2048 has requested and grant or deny them in your device settings. We keep our permission requests to a minimum.</p>
+
+            <h3 class="subsection-title">📞 Contact & Support</h3>
+            <p>Have questions about your privacy or our practices? <a href="mailto:naufalasyhab@gmail.com">Contact us anytime</a> — we're happy to help. We'll respond to privacy inquiries within 30 days.</p>
+        </div>
+
+        <!-- Legal Information -->
+        <div id="legal" class="content-section">
+            <h2 class="section-title">Legal Compliance</h2>
+            
+            <h3 class="subsection-title">🇪🇺 GDPR (European Users)</h3>
+            <p>If you're located in the European Union, here's how we comply with the General Data Protection Regulation:</p>
+            <ul>
+                <li>We don't collect GDPR-protected personal data</li>
+                <li>Your Advertising ID may be regulated as personal data — you control it through Google</li>
+                <li>You have the right to file complaints with your local data protection authority</li>
+                <li>We maintain data processing agreements with third parties</li>
+            </ul>
+
+            <h3 class="subsection-title">🇺🇸 CCPA/CPRA (California Users)</h3>
+            <p>California residents have strong privacy rights. Here's our compliance:</p>
+            <ul>
+                <li>We do <strong>not</strong> "sell" personal information as defined by CCPA</li>
+                <li>We do <strong>not</strong> "share" personal information for behavioral advertising</li>
+                <li>Your Advertising ID is protected under CPRA regulations</li>
+                <li><a href="mailto:naufalasyhab@gmail.com">Contact us</a> to exercise your rights</li>
+            </ul>
+
+            <h3 class="subsection-title">📋 Policy Updates</h3>
+            <p>We may update this Privacy Policy to reflect changes in our practices or legal requirements. We'll notify you of material changes by updating the date on this page. By continuing to use Duck 2048, you agree to the updated policy.</p>
+        </div>
+
+        <!-- Contact Us -->
+        <div class="content-section">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-section">
+                <h3>Contact Information</h3>
+                <div class="contact-item">Studio: <strong>Antheloop</strong></div>
+                <div class="contact-item">Email: <a href="mailto:naufalasyhab@gmail.com">naufalasyhab@gmail.com</a></div>
+                <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">We value your privacy concerns and will respond to any inquiry or complaint within 30 days.</p>
+            </div>
+        </div>
+
+        <!-- Final Statement -->
+        <div class="content-section">
+            <p style="text-align: center; font-style: italic; color: var(--text-muted); font-size: 15px;">
+                By downloading and playing Duck 2048, you acknowledge that you have read and understood this Privacy Policy. If you don't agree with our practices, please don't use the game.
+            </p>
+        </div>
+    </main>
+
+</div>
+
+<!-- Scroll to Top Button -->
+<div class="scroll-top" id="scrollTop">↑</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-logos-display">
+            <div class="footer-logo-item">
+                <img src="antheloop-logo.png" alt="Antheloop" loading="lazy">
+            </div>
+            <div class="footer-logo-item">
+                <img src="duck-2048-logo.png" alt="Duck 2048" loading="lazy">
+            </div>
+        </div>
+        <h2 class="footer-title">Duck 2048</h2>
+        <p class="footer-text">A delightful puzzle game by Antheloop</p>
+        <div class="footer-divider"></div>
+        <p class="footer-text">© 2026 Antheloop. All rights reserved.</p>
+        <p class="footer-text" style="margin-top: 15px; font-size: 12px; opacity: 0.6;">This privacy policy is created for complete transparency. For legal inquiries, please consult a qualified attorney.</p>
+    </div>
+</footer>
+
+<script>
+    // Smooth scroll navigation
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Highlight active nav
+                    document.querySelectorAll('.nav-link').forEach(l => l.style.opacity = '1');
+                    this.style.opacity = '0.6';
+                }
+            }
+        });
+    });
+
+    // Scroll to top button
+    const scrollTop = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 500) {
+            scrollTop.classList.add('visible');
+        } else {
+            scrollTop.classList.remove('visible');
+        }
+    });
+
+    scrollTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Intersection Observer for staggered animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = `fadeInUp 0.8s ease-out ${index * 0.1}s forwards`;
+                entry.target.style.opacity = '0';
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.content-section').forEach(section => {
+        observer.observe(section);
+    });
+</script>
+
+</body>
+</html>
